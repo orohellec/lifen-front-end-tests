@@ -1,0 +1,13 @@
+.flash-message {
+  width: 100%;
+  padding: 5px 5px;
+}
+
+.flash-message-remove {
+  float: right;
+  background-color: grey;
+  border: solid;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
