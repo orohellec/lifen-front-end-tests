@@ -103,11 +103,13 @@ const DropCard = (props) => {
     if (fileList.length) {
       setFileLoading(true);
       try {
-        const res = await axios.post('https://fhirtest.uhn.ca/baseDstu3/Binary', {body: fileList[0]})
+        const res = await axios.post('https://fhirtest.uhn.ca/baseDstu3/Binary', {body: fileList[0]});
+        const resHistory = await axios.get('http://hapi.fhir.org/baseDstu3/Binary/_history');
+        const totalFiles = resHistory.data.total;
         if (res.status === 201) {
           setFlashParams({
             display: true,
-            message: 'Votre fichier à bien été envoyé',
+            message: `Votre fichier à bien été envoyé. Il y a ${totalFiles} fichiers sur le server`,
             bgColor: 'green'
           })
           setFileList([]);
