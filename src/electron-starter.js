@@ -54,3 +54,25 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function startWatcher(path){
+  const chokidar = require('chokidar');
+
+  var watcher = chokidar.watch(path, {
+      ignored: /[\/\\]\./,
+      persistent: true
+  });
+
+  function onWatcherReady(){
+      console.info('From here can you check for real changes, the initial scan has been completed.');
+  }
+        
+  // Declare the listeners of the watcher
+  watcher
+  .on('add', function(path) {
+    console.log('File', path, 'has been added');
+  })
+}
+
+// change the path to watch an other directory
+startWatcher('/Users/olivier/FHIR');
